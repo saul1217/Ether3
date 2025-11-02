@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    container_name: ether3-api-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-key}
+      - JWT_EXPIRES_IN=${JWT_EXPIRES_IN:-7d}
+      - ETH_RPC_URL=${ETH_RPC_URL:-https://eth.llamarpc.com}
+    volumes:
+      - ./src:/app/src
+      - /app/node_modules
+    command: npm run start:dev
+    networks:
+      - ether3-network
+
+networks:
+  ether3-network:
+    driver: bridge
