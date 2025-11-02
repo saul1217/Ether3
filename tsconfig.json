@@ -23,5 +23,6 @@
       "@app/common/*": ["src/common/*"],
       "@app/auth/*": ["src/auth/*"]
     }
-  }
+  },
+  "exclude": ["node_modules", "dist", "examples", "test", "**/*.spec.ts"]
 }

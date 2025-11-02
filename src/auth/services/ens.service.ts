@@ -51,7 +51,7 @@ export class EnsService {
         return null;
       }
       const avatar = await resolver.getAvatar();
-      return avatar?.url || null;
+      return avatar || null;
     } catch (error) {
       return null;
     }
